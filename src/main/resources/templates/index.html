@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客首页</title>
+    <link rel="stylesheet" href="../static/semanticui/semantic.min.css" >
+    <link rel="stylesheet" href="../static/css/mynav.css" >
+    <link rel="stylesheet" href="../static/css/myfooter.css" >
+</head>
+<body>
+<!--导航栏引入-->
+<nav class="ui inverted attached segment nav-smaller">
+    <div class="ui container">
+        <div class="ui inverted stackable menu">
+            <h2 class="ui teal header item">Ctfstar</h2>
+            <a href="#" class="active item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
+            <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+            <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
+            <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>归档</a>
+            <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+            <div class="right my-item middle aligned item mobile-hide">
+                <div class="ui left  icon input loading">
+                    <input type="text" placeholder="搜索...">
+                    <div class="ui tag label">
+                        <p class="ui">titles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black button right-top mobile-show">
+        <i class="sidebar icon">
+
+        </i>
+    </a>
+</nav>
+
+<!--中间栏目-->
+<div class="nav-larger">
+    <div class="ui  container">
+        <div class="ui stackable grid">
+            <!--博客-->
+            <div class="eleven wide column">
+                <div class="ui segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h2 class="ui teal header item">Blog</h2>
+                        </div>
+                        <div class="right aligned column ">
+                            共<h3 class="ui red header item inline-block">0</h3>篇
+                        </div>
+                    </div>
+                </div>
+                <!--文章列表-->
+                <div class="ui segment">
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui mobile reversed stackable grid">
+                            <div class="ui eleven wide column">
+                                <h3 class="ui header">标题1</h3>
+                                <p class="my-text">段落内容</p>
+                                <div class="ui grid">
+                                    <div class="ui twelve wide column">
+                                        <div class="ui link mini list horizontal">
+                                            <div class="item">
+                                                <img src="https://picsum.photos/100/100" class="ui avatar image">
+                                                <div class="content"><a href="#" class="header">ctfstar</a></div>
+                                            </div>
+                                            <div class="item">
+                                                <i class="calendar icon">
+
+                                                </i>
+                                                2022-12-12
+                                            </div>
+                                            <div class="item">
+                                                <i class="eye icon"></i>
+                                                333
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ui right aligned four wide column">
+                                        <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui five wide column">
+                                <a href="#" target="_blank">
+                                    <img src="https://picsum.photos/250/200" class="ui rounded image">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--翻页-->
+                <div class="ui bottom segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <a href="#" class="ui teal basic button"><i class="left arrow icon"></i>Last</a>
+                        </div>
+                        <div class="right aligned column">
+                            <a href="#" class="ui teal basic button">Next<i class="right arrow icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--栏目-->
+            <div class="five wide column">
+                <!--文章类别-->
+                <div class="ui segment">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="inbox icon"></i>分类
+                            </div>
+                            <div class="column right aligned">
+                                <a href="#" class="item" target="_blank">更多<i class="expand icon"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui fluid vertical menu">
+                            <a href="#" class="item">java代审
+                            <div class="ui item basic label">1</div>
+                            </a>
+                            <a href="#" class="item">java代审
+                                <div class="ui item basic label">1</div>
+                            </a>
+                            <a href="#" class="item">java代审
+                                <div class="ui item basic label">1</div>
+                            </a>
+                            <a href="#" class="item">java代审
+                                <div class="ui item basic label">1</div>
+                            </a>
+                            <a href="#" class="item">java代审
+                                <div class="ui item basic label">1</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--标签页-->
+                <div class="ui segment lanmu-block">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="idea icon"></i>标签
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" class="item" target="_blank">更多<i class="expand icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui teal segment">
+                        <a href="#" target="_blank" class="ui teal basic label lavel-block">
+                            cc链<div class="detail">12</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic label lavel-block">
+                            cc链<div class="detail">12</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic label lavel-block">
+                            cc链<div class="detail">12</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic label lavel-block">
+                            cc链<div class="detail">12</div>
+                        </a>
+                        <a href="#" target="_blank" class="ui teal basic label lavel-block">
+                            cc链<div class="detail">12</div>
+                        </a>
+                    </div>
+                </div>
+                <!--推荐-->
+                <div class="ui segment lanmu-block">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="share icon"></i>推荐
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" target="_blank" class="item">更多<i class="expand icon"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank">CC1的原理追踪</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank">CC1的原理追踪</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank">CC1的原理追踪</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank">CC1的原理追踪</a>
+                    </div>
+                    <div class="ui segment">
+                        <a href="#" target="_blank">CC1的原理追踪</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--底部栏目-->
+<footer class="ui inverted vertical segment footer-block">
+    <div class="ui inverted center aligned container">
+        <div class="ui inverted stackable divided grid">
+            <div class="four wide column">
+                <img src="../static/images/girlfriend.png" th:src="@{/images/girlfriend.png}" class="ui rounded image" style="height:150px;width: 100px">
+            </div>
+            <div class="four wide column">
+                <h2>eee</h2>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h1>eee</h1>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h1>eee</h1>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                    <a href="#" class="item">文章1</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p>it's ctfstar</p>
+    </div>
+</footer>
+
+
+<script>
+    $('.menu.toggle').click(function (){
+        $('.my-item').toggleClass('mobile-hide');
+    });
+</script>
+</body>
+</html>

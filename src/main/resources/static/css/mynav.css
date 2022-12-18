@@ -1,0 +1,18 @@
+.nav-smaller{
+    padding-bottom: 0.4px !important;
+    padding-top: 0.4px !important;
+}
+.my-item{
+    padding-right: 30px !important;
+    padding-left: 30px !important;
+}
+.nav-larger{
+    padding-bottom: 4em !important;
+    padding-top: 4em !important;
+}
+
+.my-text{
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8 !important;
+}

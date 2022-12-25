@@ -9,80 +9,38 @@ import java.util.Date;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity(name = "t_blog")
+
 public class Blog {
+
+
     @Id
     @GeneratedValue
     private Long id;
+    private String title;
     private String content;
     private String firstPicture;
     private String flag;
     private Integer views;
+    private boolean appreciation;
+    private boolean shareStatement;
+    private boolean commentabled;
+    private boolean published;
     private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createtime;
+    private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatetime;
-
+    private Date updateTime;
     @ManyToOne
     private Type type;
-
-
-    @ManyToMany
-    private List<Tag> tags=new ArrayList<>();
-
     @ManyToOne
     private Admin admin;
+    @OneToMany(mappedBy = "blog")
+    private List<Comment> comments = new ArrayList<>();
 
+    public Blog() {
 
-
-    @OneToMany
-    private List<Comment> comments=new ArrayList<>();
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
-
-    public Blog(){}
-
-    public Blog(Long id, String content, String firstPicture, String flag, Integer views, boolean recommend, Date createtime, Date updatetime) {
-        this.id = id;
-        this.content = content;
-        this.firstPicture = firstPicture;
-        this.flag = flag;
-        this.views = views;
-        this.recommend = recommend;
-        this.createtime = createtime;
-        this.updatetime = updatetime;
     }
 
     public Long getId() {
@@ -91,6 +49,14 @@ public class Blog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -125,6 +91,38 @@ public class Blog {
         this.views = views;
     }
 
+    public boolean isAppreciation() {
+        return appreciation;
+    }
+
+    public void setAppreciation(boolean appreciation) {
+        this.appreciation = appreciation;
+    }
+
+    public boolean isShareStatement() {
+        return shareStatement;
+    }
+
+    public void setShareStatement(boolean shareStatement) {
+        this.shareStatement = shareStatement;
+    }
+
+    public boolean isCommentabled() {
+        return commentabled;
+    }
+
+    public void setCommentabled(boolean commentabled) {
+        this.commentabled = commentabled;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
     public boolean isRecommend() {
         return recommend;
     }
@@ -133,33 +131,84 @@ public class Blog {
         this.recommend = recommend;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Blog(Long id, String title, String content, String firstPicture, String flag, Integer views, boolean appreciation, boolean shareStatement, boolean commentabled, boolean published, boolean recommend, Date createTime, Date updateTime, Type type, Admin admin, List<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.firstPicture = firstPicture;
+        this.flag = flag;
+        this.views = views;
+        this.appreciation = appreciation;
+        this.shareStatement = shareStatement;
+        this.commentabled = commentabled;
+        this.published = published;
+        this.recommend = recommend;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.type = type;
+        this.admin = admin;
+        this.comments = comments;
     }
 
     @Override
     public String toString() {
         return "Blog{" +
                 "id=" + id +
+                ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", firstPicture='" + firstPicture + '\'' +
                 ", flag='" + flag + '\'' +
                 ", views=" + views +
+                ", appreciation=" + appreciation +
+                ", shareStatement=" + shareStatement +
+                ", commentabled=" + commentabled +
+                ", published=" + published +
                 ", recommend=" + recommend +
-                ", createtime=" + createtime +
-                ", updatetime=" + updatetime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", type=" + type +
+                ", admin=" + admin +
+                ", comments=" + comments +
                 '}';
     }
 }

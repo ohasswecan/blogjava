@@ -14,11 +14,9 @@
   <div class="ui container">
     <div class="ui inverted stackable menu">
       <h2 class="ui teal header item">Ctfstar</h2>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
-      <a href="#" class="active item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>归档</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+      <a href="#" th:href="@{/}" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
+      <a href="#" th:href="@{/fenlei}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" th:href="@{/ctfstar}" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
       <div class="right my-item middle aligned item mobile-hide">
         <div class="ui left  icon input loading">
           <input type="text" placeholder="搜索...">
@@ -45,47 +43,25 @@
         <h2 class="ui teal header item">分类</h2>
       </div>
       <div class="right aligned column ">
-        共<h3 class="ui red header item inline-block">0</h3>篇
+        共<h3 class="ui red header item inline-block" th:text="${page.totalElements}">0</h3>篇
       </div>
     </div>
   </div>
 
   <div class="ui segment">
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
+    <div class="ui labeled button magin-bottom-small" th:each="type : ${types}">
+      <a href="#" th:href="@{/fenlei/{id}(id=${type.id})}"  class="ui basic teal button"><span th:text="${type.name}">java代码审计</span></a>
+      <div class="ui basic teal left pointing label" th:text="${#arrays.length(type.blogs)}">15</div>
     </div>
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
-    </div>
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
-    </div>
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
-    </div>
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
-    </div><div class="ui labeled button magin-bottom-small">
-    <a href="#" class="ui basic teal button">java代码审计</a>
-    <div class="ui basic teal left pointing label">15</div>
-  </div>
-    <div class="ui labeled button magin-bottom-small">
-      <a href="#" class="ui basic teal button">java代码审计</a>
-      <div class="ui basic teal left pointing label">15</div>
-    </div>
+
 
   </div>
   <div class="ui segment">
-    <div class="ui segment mobile-lr-clear padded">
+    <div class="ui segment mobile-lr-clear padded" th:each="blog : ${page.content}">
       <div class="ui mobile reversed stackable grid">
         <div class="ui eleven wide column">
-          <h3 class="ui header">标题1</h3>
-          <p class="my-text">段落内容</p>
+          <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">标题1</a></h3>
+          <p class="my-text" th:text="|${blog.firstPicture}.....|">段落内容</p>
           <div class="ui grid">
             <div class="ui twelve wide column">
               <div class="ui link  list horizontal">
@@ -97,21 +73,21 @@
                   <i class="calendar icon">
 
                   </i>
-                  2022-12-12
+                  <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2022-12-12</span>
                 </div>
                 <div class="item">
                   <i class="eye icon"></i>
-                  333
+                  <span th:text="${blog.views}">333</span>
                 </div>
               </div>
             </div>
             <div class="ui right aligned four wide column">
-              <a href="#" target="_blank" class="ui teal basic label">java代审</a>
+              <a href="#" target="_blank" class="ui teal basic label" th:text="${blog.type.name}">java代审</a>
             </div>
           </div>
         </div>
         <div class="ui five wide column">
-          <a href="#" target="_blank">
+          <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
             <img src="https://picsum.photos/250/200" class="ui rounded image">
           </a>
         </div>
@@ -121,10 +97,10 @@
   <div class="ui bottom segment">
     <div class="ui middle aligned two column grid">
       <div class="column">
-        <a href="#" class="ui teal basic button"><i class="left arrow icon"></i>Last</a>
+        <a href="#" class="ui teal basic button" th:href="${typeid==null}? @{/fenlei/(page=${page.number}-1)}: @{/fenlei/{id}/(page=${page.number}-1,id=${typeid})}" ><i class="left arrow icon"></i>Last</a>
       </div>
       <div class="right aligned column">
-        <a href="#" class="ui teal basic button">Next<i class="right arrow icon"></i></a>
+        <a href="#" th:href="${typeid==null}? @{/fenlei/(page=${page.number}+1)}: @{/fenlei/{id}/(page=${page.number}+1,id=${typeid})}" class="ui teal basic button">Next<i class="right arrow icon"></i></a>
       </div>
     </div>
   </div>
@@ -136,7 +112,7 @@
   <div class="ui inverted center aligned container">
     <div class="ui inverted stackable divided grid">
       <div class="four wide column">
-        <img src="../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+        <img src="../static/images/girlfriend.png" th:src="@{/images/girlfriend.png}" class="ui rounded image" style="height:150px;width: 100px">
       </div>
       <div class="four wide column">
         <h2>eee</h2>

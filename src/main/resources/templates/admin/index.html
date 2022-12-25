@@ -52,86 +52,9 @@
 <!--中间栏目-->
 <div class="nav-larger">
   <div class="ui container">
-   <div method="post" class="ui form">
-     <input type="hidden" name="page">
-     <div class="ui segment">
-      <div class="inline fields">
-        <div class="field">
-          <input type="text" name="title" placeholder="标题">
-        </div>
-        <div class="field">
-          <div class="ui selection dropdown">
-            <input type="hidden" name="typeId">
-            <i class="dropdown icon"></i>
-            <div class="default text">分类</div>
-            <div class="menu">
-              <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}"></div>
-
-            </div>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" id="recommend" name="recommend">
-            <label for="recommend">推荐</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <button type="button" id="search-btn" class="ui orange basic button"><i class="search icon"></i>搜索</button>
-        </div>
-
-        <div class="field write-blog ">
-          <a href="#" th:href="@{/admin/blogs/write}" class="ui  red basic button">写文章</a>
-        </div>
-      </div>
-     </div>
-   </div>
-
-    <div id="table-container">
-    <table class="ui table celled center aligned" th:fragment="blogList">
-      <thead>
-      <tr>
-        <th></th>
-        <th>标题</th>
-        <th>类型</th>
-        <th>是否推荐</th>
-        <th>创作时间</th>
-        <th>操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="blog,iteStat : ${page.content}">
-        <td th:text="${iteStat.count}">1</td>
-        <td th:text="${blog.title}">java反序列化</td>
-        <td th:text="${blog.type.name}">java代</td>
-        <td th:text="${blog.recommend} ? '是':'否'">推</td>
-        <td th:text="${blog.createTime}">2022-12-1</td>
-        <td>
-          <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui small teal basic button">修改</a>
-          <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui small orange basic button">删除</a>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-
-        <th colspan="6">
-
-
-          <div class="ui right floated pagination menu">
-            <a onclick="page(this)" class="icon item" th:attr= "data-page=${page.number}-1" th:unless="${page.first}">
-              <i class="left chevron icon"></i>Last
-            </a>
-
-            <a onclick="page(this)" class="icon item"  th:attr= "data-page=${page.number}+1" th:unless="${page.last}">
-              Next<i class="right chevron icon"></i>
-            </a>
-          </div>
-        </th>
-      </tr>
-      </tfoot>
-    </table>
+    <div class="ui success large message">
+       <h3>Hi,[[${session.admin.nickname}]]</h3>
+      <p>欢迎登录</p>
     </div>
   </div>
 </div>
@@ -141,7 +64,7 @@
   <div class="ui inverted center aligned container">
     <div class="ui inverted stackable divided grid">
       <div class="four wide column">
-        <img src="../../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+        <img src="../../static/images/girlfriend.png" th:src="@{/images/girlfriend.png}" class="ui rounded image" style="height:150px;width: 100px">
       </div>
       <div class="four wide column">
         <h2>eee</h2>
@@ -189,24 +112,6 @@
   $('.ui.dropdown').dropdown({
     on:'hover'
   });
-
-function page(obj){
-  $("[name='page']").val($(obj).data("page"));
-  loaddata();
-}
-
-$("#search-btn").click(function (){
-  loaddata()
-});
-
-function loaddata(){
-  $("#table-container").load(/*[[@{/admin/blogs/search}]]*/"/admin/blogs/search",{
-    title:$("[name='title']").val(),
-    typeId:$("[name='typeID']").val(),
-    recommend:$("[name='recommend']").prop('checked'),
-    page:$("[name='page']").val()
-  });
-}
 
 </script>
 </body>

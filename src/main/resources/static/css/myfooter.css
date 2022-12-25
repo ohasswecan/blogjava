@@ -89,3 +89,9 @@ body{
 .padding-all{
     padding: 1em!important;
 }
+
+.m-magin-auto{
+    margin: 200px auto!important;
+}
+
+

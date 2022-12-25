@@ -1,35 +1,28 @@
 package com.ctfstar.myblog.web.pojo;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "t_type")
 public class Type {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
-    @OneToMany
-    private List<Blog>  blogs=new ArrayList<>();
-    public Type(){}
-    public Type(Long id, String name) {
+    @OneToMany(mappedBy = "type")
+    private List<Blog> blogs = new ArrayList<>();
+
+    public Type(Long id, String name, List<Blog> blogs) {
         this.id = id;
         this.name = name;
-    }
-
-    public List<Blog> getBlogs() {
-        return blogs;
-    }
-
-    public void setBlogs(List<Blog> blogs) {
         this.blogs = blogs;
+    }
+
+    public Type() {
     }
 
     public Long getId() {
@@ -48,11 +41,20 @@ public class Type {
         this.name = name;
     }
 
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
     @Override
     public String toString() {
         return "Type{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", blogs=" + blogs +
                 '}';
     }
 }

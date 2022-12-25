@@ -19,11 +19,9 @@
   <div class="ui container">
     <div class="ui inverted stackable menu">
       <h2 class="ui teal header item">Ctfstar</h2>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>归档</a>
-      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+      <a href="#" th:href="@{/}" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
+      <a href="#" th:href="@{/fenlei}" class="item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" th:href="@{/ctfstar}" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
       <div class="right my-item middle aligned item mobile-hide">
         <div class="ui left  icon input loading">
           <input type="text" placeholder="搜索...">
@@ -57,11 +55,11 @@
               <i class="calendar icon">
 
               </i>
-              2022-12-12
+              <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2022-12-12</span>
             </div>
             <div class="item">
               <i class="eye icon"></i>
-              333
+              <span th:text="${blog.views}">333</span>
             </div>
           </div>
         </div>
@@ -77,8 +75,8 @@
           原创
         </div>
       </div>
-      <h2 class="ui center aligned header">java反序列化cc链的编写 </h2>
-      <div class="typo typo-selection ui  segment padded-lr-responsive footer-block" id="content">
+      <h2 class="ui center aligned header" th:text="${blog.title}">java反序列化cc链的编写 </h2>
+      <div class="typo typo-selection ui  segment padded-lr-responsive footer-block" id="content" th:utext="${blog.content}">
 
         <pre><code class="language-css">p{color:red}</code></pre>
         <h2 id="section1">一、关于 <i class="serif">Typo.css</i></h2>
@@ -450,8 +448,8 @@ h5,h6{font-size:1em;}
           <div class="eleven wide column">
             <ui class="list">
               <li>作者:ctfstar</li>
-              <li>发表时间:2022-12-17</li>
-              <li>无版权</li>
+              <li>发表时间:<span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}"></span></li>
+
             </ui>
           </div>
 
@@ -461,27 +459,49 @@ h5,h6{font-size:1em;}
         </div>
       </div>
     </div>
-    <div id="comment-container" class="ui bottom attached segment">
-      <div class="ui segment">
-        <div class="ui minimal comments">
+    <div  class="ui bottom attached segment">
+
+        <div id="comment-container" class="ui segment">
+          <div th:fragment="commentList">
+        <div class="ui minimal comments" style="max-width: 100%">
           <h3 class="ui dividing header">Comments</h3>
-          <div class="comment">
+          <div class="comment" th:each="comment : ${comments}">
             <a class="avatar">
               <img src="https://picsum.photos/100/100">
             </a>
             <div class="content">
-              <a class="author">Matt</a>
+              <a class="author" th:text="${comment.nickname}">Matt</a>
               <div class="metadata">
-                <span class="date">Today at 5:42PM</span>
+                <span class="date" th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">Today at 5:42PM</span>
               </div>
-              <div class="text">
+              <div class="text" th:text="${comment.content}">
                 How artistic!
               </div>
               <div class="actions">
-                <a class="reply">Reply</a>
+                <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}"  onclick="reply(this)">Reply</a>
+              </div>
+            </div>
+            <div class="comments" th:if="${#arrays.length(comment.replyComments)}>0">
+              <div class="comment" th:each="reply : ${comment.replyComments}">
+                <a class="avatar">
+                  <img src="https://picsum.photos/100/100">
+                </a>
+                <div class="content">
+                  <a class="author" ><span th:text="${reply.nickname}">Jenny Hess</span><span th:text="|@ ${reply.parentComment.nickname}|"></span></a>
+                  <div class="metadata">
+                    <span class="date" th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">Just now</span>
+                  </div>
+                  <div class="text" th:text="${reply.content}">
+                    Elliot you are always so right :)
+                  </div>
+                  <div class="actions">
+                    <a class="reply" data-commentid="1" data-commentnickname="Matt" th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}"  onclick="reply(this)">Reply</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <!--/*-->
           <div class="comment">
             <a class="avatar">
               <img src="https://picsum.photos/100/100">
@@ -535,10 +555,13 @@ h5,h6{font-size:1em;}
               </div>
             </div>
           </div>
-
+          <!--*/-->
         </div>
+          </div>
       </div>
-      <form class="ui reply form">
+      <div class="ui reply form">
+        <input type="hidden" name="blog.id" th:value="${blog.id}">
+        <input type="hidden" name="parentComment.id" value="-1">
         <div class="field">
           <textarea name="content"></textarea>
         </div>
@@ -546,7 +569,7 @@ h5,h6{font-size:1em;}
           <div class="field mobile-wide magin-bottom-large">
             <div class="ui left icon input ">
               <i class="user icon"></i>
-              <input type="text" name="name" placeholder="姓名">
+              <input type="text" name="nickname" placeholder="姓名">
             </div>
 
           </div>
@@ -557,10 +580,10 @@ h5,h6{font-size:1em;}
             </div>
           </div>
           <div class="field mobile-wide magin-bottom-large">
-            <button class="ui teal button"><i class="edit icon"></i>提交</button>
+            <button id="commentpost-btn" type="button" class="ui teal button"><i class="edit icon"></i>提交</button>
           </div>
         </div>
-      </form>
+    </div>
     </div>
   </div>
 </div>
@@ -584,7 +607,7 @@ h5,h6{font-size:1em;}
   <div class="ui inverted center aligned container">
     <div class="ui inverted stackable divided grid">
       <div class="four wide column">
-        <img src="../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+        <img src="../static/images/girlfriend.png" th:src="@{/images/blog.png}" class="ui rounded image" style="height:150px;width: 100px">
       </div>
       <div class="four wide column">
         <h2>eee</h2>
@@ -628,7 +651,7 @@ h5,h6{font-size:1em;}
 <script src="../static/lib/prism/prism.js"></script>
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
 <script src="../static/lib/scrollTo/jquery.scrollTo.min.js"></script>
-<script>
+<script th:inline="javascript">
   $('.menu.toggle').click(function (){
     $('.my-item').toggleClass('mobile-hide');
   });
@@ -651,6 +674,40 @@ h5,h6{font-size:1em;}
   $('#toTopButton').click(function (){
     $(window).scrollTo(0,1000)
   });
+
+
+  $('#commentpost-btn').click(function (){
+      postData()
+  });
+
+
+  function postData(){
+    $("#comment-container").load(/*[[@{/comments}]]*/"/comments",{
+      "parentComment.id" :$("[name='parentComment.id']").val(),
+      "blog.id" :$("[name='blog.id']").val(),
+      "nickname" :$("[name='nickname']").val(),
+      "email" :$("[name='email']").val(),
+      "content" :$("[name='content']").val()
+
+    },function (responseTxt, statusTxt, xhr){
+      clear()
+    })
+  }
+
+  function clear(){
+    $("[name='content']").val('');
+    $("[name='parentComment.id']").val(-1);
+    $("[name='content']").attr()
+  }
+
+
+  function reply(obj){
+
+    var commentId=$(obj).data('commentid');
+    var commentNickname=$(obj).data("commentnickname");
+    $("[name='content']").attr("placeholder","@"+commentNickname).focus();
+    $("[name='parentComment.id']").val(commentId)
+  }
 </script>
 </body>
 </html>

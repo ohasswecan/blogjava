@@ -4,11 +4,6 @@ spring:
     active: dev
 
   jpa:
-    database: MYSQL
-    show_sql: true
     hibernate:
-      ddl_auto: update
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+      ddl-auto: update
+    show-sql: true

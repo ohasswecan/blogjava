@@ -5,8 +5,7 @@ spring:
     password: root123
     url: jdbc:mysql://127.0.0.1:3309/blog
 
-mybatis:
-  mapper-locations: classpath:dao/*Mapper.xml
+
 
 logging:
   level:

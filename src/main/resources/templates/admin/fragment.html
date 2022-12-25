@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:replace="${title}">博客发布</title>
-    <script src="../../static/jquery/jquery-1.11.1-min.js"></script>
-    <script src="../../static/semanticui/semantic.min.js"></script>
-    <script src="../../static/lib/editmarkdown/editormd.min.js"></script>
-    <link rel="stylesheet" href="../../static/semanticui/semantic.min.css">
-    <link rel="stylesheet" href="../../static/lib/editmarkdown/css/editormd.min.css">
-    <link rel="stylesheet" href="../../static/css/mynav.css">
-    <link rel="stylesheet" href="../../static/css/myfooter.css">
+    <script src="../../static/jquery/jquery-1.11.1-min.js" th:src="@{/jquery/jquery-1.11.1-min.js}"></script>
+    <script src="../../static/semanticui/semantic.min.js" th:src="@{/semanticui/semantic.min.js}"></script>
+    <script src="../../static/lib/editmarkdown/editormd.min.js" th:src="@{/lib/editmarkdown/editormd.min.js}"></script>
+    <link rel="stylesheet" href="../../static/semanticui/semantic.min.css" th:href="@{/semanticui/semantic.min.css}">
+    <link rel="stylesheet" href="../../static/lib/editmarkdown/css/editormd.min.css" th:href="@{/lib/editmarkdown/css/editormd.min.css}">
+    <link rel="stylesheet" href="../../static/css/mynav.css" th:href="@{/css/mynav.css}">
+    <link rel="stylesheet" href="../../static/css/myfooter.css" th:href="@{/css/myfooter.css}">
+
+
+    </script>
 </head>
 <body>
 

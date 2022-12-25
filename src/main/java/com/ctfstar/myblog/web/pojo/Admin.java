@@ -2,6 +2,7 @@ package com.ctfstar.myblog.web.pojo;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,44 +10,24 @@ import java.util.List;
 public class Admin {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
     private String username;
     private String password;
     private String email;
-    private String avatar;
-
-
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createtime;
+    private Date createTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateTime;
 
-    @OneToMany
-    private List<Blog> blogs;
-
-    public List<Blog> getBlogs() {
-        return blogs;
-    }
-
-    public void setBlogs(List<Blog> blogs) {
-        this.blogs = blogs;
-    }
-
-    public Admin(){}
-
-    public Admin(Long id, String nickname, String username, String password, String email, String avatar, Date createtime) {
-        this.id = id;
-        this.nickname = nickname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.avatar = avatar;
-        this.createtime = createtime;
-    }
+    @OneToMany(mappedBy = "admin")
+    private List<Blog> blogs = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
+    public Admin(){}
 
     public void setId(Long id) {
         this.id = id;
@@ -84,32 +65,38 @@ public class Admin {
         this.email = email;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "admin{" +
-                "id=" + id +
-                ", nickname='" + nickname + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", createtime=" + createtime +
-                '}';
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
+    public Admin(Long id, String nickname, String username, String password, String email, Date createTime, Date updateTime, List<Blog> blogs) {
+        this.id = id;
+        this.nickname = nickname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.blogs = blogs;
     }
 }

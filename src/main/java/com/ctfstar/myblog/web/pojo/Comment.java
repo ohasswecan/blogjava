@@ -9,60 +9,27 @@ import java.util.List;
 @Entity(name = "t_comment")
 public class Comment {
 
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nickname;
     private String email;
     private String content;
     private String avatar;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createtime;
+    private Date createTime;
 
     @ManyToOne
     private Blog blog;
 
-    @OneToMany
-    private List<Comment> replyComment=new ArrayList<>();
+    @OneToMany(mappedBy = "parentComment")
+    private List<Comment> replyComments = new ArrayList<>();
 
     @ManyToOne
     private Comment parentComment;
 
-    public List<Comment> getReplyComment() {
-        return replyComment;
-    }
-
-    public void setReplyComment(List<Comment> replyComment) {
-        this.replyComment = replyComment;
-    }
-
-    public Comment getParentComment() {
-        return parentComment;
-    }
-
-    public void setParentComment(Comment parentComment) {
-        this.parentComment = parentComment;
-    }
-
-    public Blog getBlog() {
-        return blog;
-    }
-
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }
-
     public Comment(){}
-
-    public Comment(Long id, String nickname, String email, String content, String avatar, Date createtime) {
-        this.id = id;
-        this.nickname = nickname;
-        this.email = email;
-        this.content = content;
-        this.avatar = avatar;
-        this.createtime = createtime;
-    }
-
     public Long getId() {
         return id;
     }
@@ -103,23 +70,47 @@ public class Comment {
         this.avatar = avatar;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", content='" + content + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", createtime=" + createtime +
-                '}';
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    public List<Comment> getReplyComments() {
+        return replyComments;
+    }
+
+    public void setReplyComments(List<Comment> replyComments) {
+        this.replyComments = replyComments;
+    }
+
+    public Comment getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(Comment parentComment) {
+        this.parentComment = parentComment;
+    }
+
+    public Comment(Long id, String nickname, String email, String content, String avatar, Date createTime, Blog blog, List<Comment> replyComments, Comment parentComment) {
+        this.id = id;
+        this.nickname = nickname;
+        this.email = email;
+        this.content = content;
+        this.avatar = avatar;
+        this.createTime = createTime;
+        this.blog = blog;
+        this.replyComments = replyComments;
+        this.parentComment = parentComment;
     }
 }

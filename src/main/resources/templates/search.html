@@ -7,11 +7,6 @@
   <link rel="stylesheet" href="../static/semanticui/semantic.min.css">
   <link rel="stylesheet" href="../static/css/mynav.css">
   <link rel="stylesheet" href="../static/css/myfooter.css">
-  <script src="../static/jquery/jquery-1.11.1-min.js" th:src="@{/jquery/jquery-1.11.1-min.js}"></script>
-  <script src="../static/semanticui/semantic.min.js" th:src="@{/semanticui/semantic.min.js}"></script>
-  <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
-  <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
-  <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
 </head>
 <body>
 <!--导航栏引入-->
@@ -20,8 +15,8 @@
     <div class="ui inverted stackable menu">
       <h2 class="ui teal header item">Ctfstar</h2>
       <a href="#" th:href="@{/}" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
-      <a href="#" th:href="@{/fenlei}" class=" item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
-      <a href="#" th:href="@{/ctfstar}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+      <a href="#" th:href="@{/fenlei}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" th:href="@{/ctfstar}" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
       <div class="right my-item middle aligned item mobile-hide">
         <div class="ui left  icon input loading">
           <input type="text" placeholder="搜索...">
@@ -41,44 +36,68 @@
 
 <!--中间栏目-->
 <div class="nav-larger">
-  <div class="ui container">
-    <div class="ui stackable grid">
-      <div class="ui nine wide column">
-        <div class="ui segment">
-          <div class="ui segment">
-            <img src="../static/images/blog.png" th:src="@{/images/blog.png}" alt="" class="ui rounded image">
-          </div>
-
-        </div>
+<div class="ui container">
+  <div class="ui segment">
+    <div class="ui middle aligned two column grid">
+      <div class="column">
+        <h2 class="ui teal header item">搜索结果</h2>
       </div>
-      <div class="ui five wide column">
-        <div class="ui top segment">
-          <div class="ui header">我的信息</div>
-        </div>
-        <div class="ui segment">
-          <p>励志做安全研究员</p>
-        </div>
-        <div class="ui segment">
-          <div class="ui basic orange left pointing label">一点点编程</div>
-          <div class="ui basic teal left pointing label">ctf</div>
-          <div class="ui basic teal left pointing label">代码审计</div>
-        </div>
-        <div class="ui bottom segment">
-          <a href="" class="ui circular icon button"><i class="github icon"></i></a>
-          <a href="" class="ui weixin circular icon button"><i class="weixin icon"></i></a>
-          <a href="" class="ui qq circular icon button" ><i class="qq icon"></i></a>
-        </div>
+      <div class="right aligned column ">
+        共<h3 class="ui red header item inline-block" th:text="${page.totalElements}">0</h3>篇
+      </div>
+    </div>
+  </div>
 
-        <div class="ui wechat flowing popup transition hidden">
-          <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 200px">
-        </div>
 
-        <div class="ui qq-qq flowing popup transition hidden">
-          <img src="../static/images/qq.jpg" th:src="@{/images/qq.jpg}" alt="" class="ui rounded image" style="width: 200px">
+  <div class="ui segment">
+    <div class="ui segment mobile-lr-clear padded" th:each="blog : ${page.content}">
+      <div class="ui mobile reversed stackable grid">
+        <div class="ui eleven wide column">
+          <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">标题1</a></h3>
+          <p class="my-text" th:text="|${blog.firstPicture}....|">段落内容</p>
+          <div class="ui grid">
+            <div class="ui twelve wide column">
+              <div class="ui link  list horizontal">
+                <div class="item">
+                  <img src="https://picsum.photos/100/100" class="ui avatar image">
+                  <div class="content"><a href="#" class="header">ctfstar</a></div>
+                </div>
+                <div class="item">
+                  <i class="calendar icon">
+
+                  </i>
+                  <span th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2022-12-12</span>
+                </div>
+                <div class="item">
+                  <i class="eye icon"></i>
+                  <span th:text="${blog.views}">333</span>
+                </div>
+              </div>
+            </div>
+            <div class="ui right aligned four wide column">
+              <a href="#" target="_blank" class="ui teal basic label" th:text="${blog.type.name}">java代审</a>
+            </div>
+          </div>
+        </div>
+        <div class="ui five wide column">
+          <a href="#" target="_blank" th:href="@{/blog/{id}(id=${blog.id})}">
+            <img src="https://picsum.photos/250/200" class="ui rounded image">
+          </a>
         </div>
       </div>
     </div>
   </div>
+  <div class="ui bottom segment">
+    <div class="ui middle aligned two column grid">
+      <div class="column">
+        <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui teal basic button"><i class="left arrow icon"></i>Last</a>
+      </div>
+      <div class="right aligned column">
+        <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui teal basic button">Next<i class="right arrow icon"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <!--底部栏目-->
@@ -123,19 +142,12 @@
 </footer>
 
 
+
+
+
 <script>
   $('.menu.toggle').click(function (){
     $('.my-item').toggleClass('mobile-hide');
-  });
-
-  $('.qq').popup({
-    popup: $('.qq-qq'),
-    position: 'bottom center'
-  });
-
-  $('.weixin').popup({
-    popup: $('.wechat'),
-    position:'bottom center'
   });
 </script>
 </body>

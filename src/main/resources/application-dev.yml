@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root123
+    url: jdbc:mysql://127.0.0.1:3309/blog
+
+
+
+logging:
+  level:
+    root: info
+    com.ctfstar: debug
+  file:
+    path: log/blog.log

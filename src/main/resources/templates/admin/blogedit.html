@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragment::head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博客发布</title>
+  <script src="../../static/jquery/jquery-1.11.1-min.js"></script>
+  <script src="../../static/semanticui/semantic.min.js"></script>
+  <script src="../../static/lib/editmarkdown/editormd.min.js"></script>
+
+  <link rel="stylesheet" href="../../static/semanticui/semantic.min.css">
+  <link rel="stylesheet" href="../../static/lib/editmarkdown/css/editormd.min.css">
+  <link rel="stylesheet" href="../../static/css/mynav.css">
+  <link rel="stylesheet" href="../../static/css/myfooter.css">
+
+</head>
+<body>
+<!--导航栏引入-->
+<nav class="ui inverted attached segment nav-smaller">
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <h2 class="ui teal header item">博客后台文章管理</h2>
+      <a href="#" th:href="@{/admin/blogs}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>博客</a>
+      <a href="#" th:href="@{/admin/types}" class="item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
+      <div class="right my-item mobile-hide menu">
+        <div class="ui dropdown mydrop item">
+          <div class="text">
+            <img class="ui avatar image" src="https://picsum.photos/100/100">
+            [[${session.admin.nickname}]] <i class="dropdown icon"></i>
+          </div>
+          <div class="menu">
+            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black button right-top mobile-show">
+    <i class="sidebar icon">
+
+    </i>
+  </a>
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" th:href="@{/admin/blogs/write}" class="active teal basic item">发布</a>
+        <a href="#" th:href="@{/admin/blogs}" class="item">列表</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--中间栏目-->
+<div class="nav-larger">
+  <div class="ui container">
+    <form id="blog-form" th:action="@{/admin/blogs/{id}(id=${blog.id})}" action="#" method="post" class="ui form">
+      <input type="hidden" name="published">
+      <div class="field">
+      <div class="ui left labeled input">
+        <div class="ui selection dropdown labeled">
+          <input type="hidden" value="原创">
+          <i class="dropdown icon"></i>
+          <div class="default text">原创</div>
+          <div class="menu">
+            <div class="item" data-value="1">原创</div>
+            <div class="item" data-value="2">转载</div>
+          </div>
+        </div>
+          <input type="text" name="title" placeholder="标题" th:value="${blog.title}">
+      </div>
+      </div>
+
+
+      <div class="field">
+        <div id="md-content" style="z-index: 1 !important;" >
+          <textarea placeholder="文章" name="content" style="display: none" th:text="${blog.content}"></textarea>
+        </div>
+
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+
+          <div class="ui selection dropdown labeled">
+            <label class="ui teal basic label">分类</label>
+            <input type="hidden" name="type.id" th:value="${blog.type.id}">
+            <i class="dropdown icon"></i>
+              <div class="default text" >cc</div>
+              <div class="menu">
+                <div th:each="type : ${types}" class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}"></div>
+
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="field">
+        <div class="ui labeled left input">
+          <label class="ui teal basic label">封面图片</label>
+          <input type="text" name="firstPicture" placeholder="封面图片" th:value="${blog.firstPicture}">
+        </div>
+      </div>
+
+
+
+      <div class="inline fields">
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="recommend" id="recommend" class="hidden">
+            <label for="recommend">推荐</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="shareStatement" id="shareStatement" class="hidden">
+            <label for="shareStatement">分享</label>
+          </div>
+        </div>
+
+
+        <div class="field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="commentabled" id="commentabled" class="hidden">
+            <label for="commentabled">评论</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui error message"></div>
+      <div class="ui container">
+        <button type="button" class="ui basic button" onclick="window.history.go(-1)">上一页</button>
+        <button type="button" id="save-btn" class="ui secondary basic button">保存</button>
+        <button type="button" id="publish-btn" class="ui teal basic button">修改</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--底部栏目-->
+<footer class="ui inverted vertical segment footer-block">
+  <div class="ui inverted center aligned container">
+    <div class="ui inverted stackable divided grid">
+      <div class="four wide column">
+        <img src="../../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+      </div>
+      <div class="four wide column">
+        <h2>eee</h2>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p>it's ctfstar</p>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript">
+  $('.menu.toggle').click(function (){
+    $('.my-item').toggleClass('mobile-hide');
+  });
+  $('.ui.dropdown').dropdown({
+    on:'hover'
+  });
+
+$('.ui.form').form({
+  fields:{
+    title:{
+      identifier:'title',
+      rules:[{
+        type:'empty',
+        prompt:'标题不能为空',
+      }]
+    }
+  }
+})
+  $('#save-btn').click(function (){
+    $('[name="published"]').val(false)
+    $('#blog-form').submit()
+  })
+
+  $('#publish-btn').click(function (){
+    $('[name="published"]').val(true)
+    $('#blog-form').submit()
+  })
+
+  var testEditor;
+
+  $(function() {
+    testEditor = editormd("md-content", {
+      width   : "100%",
+      height  : 640,
+      syncScrolling : "single",
+      path    : "/lib/editmarkdown/lib/"
+    });
+
+    /*
+    // or
+    testEditor = editormd({
+        id      : "test-editormd",
+        width   : "90%",
+        height  : 640,
+        path    : "../lib/"
+    });
+    */
+  });
+</script>
+</body>
+</html>

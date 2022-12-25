@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分类页面</title>
+  <link rel="stylesheet" href="../static/semanticui/semantic.min.css">
+  <link rel="stylesheet" href="../static/css/mynav.css">
+  <link rel="stylesheet" href="../static/css/myfooter.css">
+  <script src="../static/jquery/jquery-1.11.1-min.js" th:src="@{/jquery/jquery-1.11.1-min.js}"></script>
+  <script src="../static/semanticui/semantic.min.js" th:src="@{/semanticui/semantic.min.js}"></script>
+  <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+  <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+  <script src="../static/lib/scrollTo/jquery.scrollTo.min.js" th:src="@{/lib/scrollTo/jquery.scrollTo.min.js}"></script>
+</head>
+<body>
+<!--导航栏引入-->
+<nav class="ui inverted attached segment nav-smaller m-shadow-small">
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <h2 class="ui teal header item">Ctfstar</h2>
+      <a href="#" th:href="@{/}" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
+      <a href="#" th:href="@{/fenlei}" class=" item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" th:href="@{/ctfstar}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+      <div class="right my-item middle aligned item mobile-hide">
+        <div class="ui left  icon input loading">
+          <input type="text" placeholder="搜索...">
+          <div class="ui tag label">
+            <p class="ui">titles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black button right-top mobile-show">
+    <i class="sidebar icon">
+
+    </i>
+  </a>
+</nav>
+
+<!--中间栏目-->
+<div class="nav-larger">
+  <div class="ui container">
+    <div class="ui stackable grid">
+      <div class="ui nine wide column">
+        <div class="ui segment">
+          <div class="ui segment">
+            <img src="../static/images/blog.png" th:src="@{/images/blog.png}" alt="" class="ui rounded image">
+          </div>
+
+        </div>
+      </div>
+      <div class="ui five wide column">
+        <div class="ui top segment">
+          <div class="ui header">我的信息</div>
+        </div>
+        <div class="ui segment">
+          <p>励志做安全研究员</p>
+        </div>
+        <div class="ui segment">
+          <div class="ui basic orange left pointing label">一点点编程</div>
+          <div class="ui basic teal left pointing label">ctf</div>
+          <div class="ui basic teal left pointing label">代码审计</div>
+        </div>
+        <div class="ui bottom segment">
+          <a href="" class="ui circular icon button"><i class="github icon"></i></a>
+          <a href="" class="ui weixin circular icon button"><i class="weixin icon"></i></a>
+          <a href="" class="ui qq circular icon button" ><i class="qq icon"></i></a>
+        </div>
+
+        <div class="ui wechat flowing popup transition hidden">
+          <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt="" class="ui rounded image" style="width: 200px">
+        </div>
+
+        <div class="ui qq-qq flowing popup transition hidden">
+          <img src="../static/images/qq.jpg" th:src="@{/images/qq.jpg}" alt="" class="ui rounded image" style="width: 200px">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--底部栏目-->
+<footer class="ui inverted vertical segment footer-block">
+  <div class="ui inverted center aligned container">
+    <div class="ui inverted stackable divided grid">
+      <div class="four wide column">
+        <img src="../static/images/girlfriend.png" th:src="@{/images/girlfriend.png}" class="ui rounded image" style="height:150px;width: 100px">
+      </div>
+      <div class="four wide column">
+        <h2>eee</h2>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p>it's ctfstar</p>
+  </div>
+</footer>
+
+
+<script>
+  $('.menu.toggle').click(function (){
+    $('.my-item').toggleClass('mobile-hide');
+  });
+
+  $('.qq').popup({
+    popup: $('.qq-qq'),
+    position: 'bottom center'
+  });
+
+  $('.weixin').popup({
+    popup: $('.wechat'),
+    position:'bottom center'
+  });
+</script>
+</body>
+</html>

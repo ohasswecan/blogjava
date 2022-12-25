@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>归档页面</title>
+  <link rel="stylesheet" href="../static/semanticui/semantic.min.css">
+  <link rel="stylesheet" href="../static/css/mynav.css">
+  <link rel="stylesheet" href="../static/css/myfooter.css">
+</head>
+<body>
+<!--导航栏引入-->
+<nav class="ui inverted attached segment nav-smaller m-shadow-small">
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <h2 class="ui teal header item">Ctfstar</h2>
+      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>首页</a>
+      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" class=" item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
+      <a href="#" class="active item my-item mobile-hide"><i class="middle home icon" ></i>归档</a>
+      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>关于我</a>
+      <div class="right my-item middle aligned item mobile-hide">
+        <div class="ui left  icon input loading">
+          <input type="text" placeholder="搜索...">
+          <div class="ui tag label">
+            <p class="ui">titles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black button right-top mobile-show">
+    <i class="sidebar icon">
+
+    </i>
+  </a>
+</nav>
+
+<!--中间栏目-->
+<div class="nav-larger">
+<div class="ui container">
+  <div class="ui segment">
+    <div class="ui middle aligned two column grid">
+      <div class="column">
+        <h2 class="ui teal header item">标签</h2>
+      </div>
+      <div class="right aligned column ">
+        共<h3 class="ui red header item inline-block">0</h3>篇
+      </div>
+    </div>
+  </div>
+  <h2 class="ui center aligned header">2022</h2>
+  <div class="ui fluid vertical menu">
+
+      <a href="#" target="_blank" class="item">
+
+        <span>
+
+          <i class="teal circle icon"></i>cccccccccc
+          <div class="ui small left pointing basic teal label vertical center aligned">9.03</div>
+        </span>
+        <div class="ui  basic red label vertical center">原创</div>
+      </a>
+    <a href="#" target="_blank" class="item">
+
+        <span>
+
+          <i class="teal circle icon"></i>cccccccccc
+          <div class="ui small left pointing basic teal label vertical center aligned">9.03</div>
+        </span>
+      <div class="ui  basic red label vertical center">原创</div>
+    </a>
+    <a href="#" target="_blank" class="item">
+
+        <span>
+
+          <i class="teal circle icon"></i>cccccccccc
+          <div class="ui small left pointing basic teal label vertical center aligned">9.03</div>
+        </span>
+      <div class="ui  basic red label vertical center">原创</div>
+    </a>
+
+  </div>
+
+
+
+  <div class="ui bottom segment">
+    <div class="ui middle aligned two column grid">
+      <div class="column">
+        <a href="#" class="ui teal basic button"><i class="left arrow icon"></i>Last</a>
+      </div>
+      <div class="right aligned column">
+        <a href="#" class="ui teal basic button">Next<i class="right arrow icon"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--底部栏目-->
+<footer class="ui inverted vertical segment footer-block">
+  <div class="ui inverted center aligned container">
+    <div class="ui inverted stackable divided grid">
+      <div class="four wide column">
+        <img src="../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+      </div>
+      <div class="four wide column">
+        <h2>eee</h2>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p>it's ctfstar</p>
+  </div>
+</footer>
+
+
+
+
+
+<script>
+  $('.menu.toggle').click(function (){
+    $('.my-item').toggleClass('mobile-hide');
+  });
+</script>
+</body>
+</html>

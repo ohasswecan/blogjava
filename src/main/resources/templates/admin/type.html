@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragment::head(~{::title})">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博客管理</title>
+  <script src="../../static/jquery/jquery-1.11.1-min.js"></script>
+  <script src="../../static/semanticui/semantic.min.js"></script>
+  <link rel="stylesheet" href="../../static/semanticui/semantic.min.css">
+  <link rel="stylesheet" href="../../static/css/mynav.css">
+  <link rel="stylesheet" href="../../static/css/myfooter.css">
+</head>
+<body>
+<!--导航栏引入-->
+<nav class="ui inverted attached segment nav-smaller">
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <h2 class="ui teal header item">博客后台文章管理</h2>
+      <a href="#" th:href="@{/admin/blogs}" class=" item my-item mobile-hide"><i class="middle home icon" ></i>博客</a>
+      <a href="#" th:href="@{/admin/types}" class="active item my-item mobile-hide"><i class="middle home icon" ></i>分类</a>
+      <a href="#" class="item my-item mobile-hide"><i class="middle home icon" ></i>标签</a>
+      <div class="right my-item mobile-hide menu">
+        <div class="ui dropdown mydrop item">
+          <div class="text">
+            <img class="ui avatar image" src="https://picsum.photos/100/100">
+            [[${session.admin.nickname}]] <i class="dropdown icon"></i>
+          </div>
+          <div class="menu">
+            <a href="#" th:href="@{/admin/logout}" class="item">注销</a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black button right-top mobile-show">
+    <i class="sidebar icon">
+
+    </i>
+  </a>
+  <div class="ui attached pointing menu">
+    <div class="ui container">
+      <div class="right menu">
+        <a href="#" th:href="@{/admin/blogs/write}" class="item">发布</a>
+        <a href="#" th:href="@{/admin/blogs}" class="active teal basic item">列表</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!--中间栏目-->
+<div class="nav-larger">
+  <div class="ui container">
+
+
+    <table class="ui table celled center aligned">
+      <thead>
+      <tr>
+        <th></th>
+        <th>分类</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="type,iteStat : ${page.content}">
+        <td th:text="${iteStat.count}">1</td>
+        <td th:text="${type.name}">java反序列化</td>
+
+        <td>
+          <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui small teal basic button">修改</a>
+          <a href="#" th:href="@{/admin/types/{id}/delete(id=${type.id})}" class="ui small orange basic button">删除</a>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th colspan="6">
+          <div class="ui right floated pagination menu">
+            <a class="icon item" th:href="@{/admin/types(page=${page.number}-1)}" th:unless="${page.first}">
+              <i class="left chevron icon"></i>Last
+            </a>
+
+            <a class="icon item" th:href="@{/admin/types(page=${page.number}+1)}" th:unless="${page.last}">
+              Next<i class="right chevron icon"></i>
+            </a>
+          </div>
+          <a th:href="@{/admin/types/input}" class="ui right floated teal basic button">add</a>
+        </th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!--底部栏目-->
+<footer class="ui inverted vertical segment footer-block">
+  <div class="ui inverted center aligned container">
+    <div class="ui inverted stackable divided grid">
+      <div class="four wide column">
+        <img src="../../static/images/girlfriend.png" class="ui rounded image" style="height:150px;width: 100px">
+      </div>
+      <div class="four wide column">
+        <h2>eee</h2>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h1>eee</h1>
+        <div class="ui inverted link list">
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+          <a href="#" class="item">文章1</a>
+        </div>
+      </div>
+
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p>it's ctfstar</p>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript">
+  $('.menu.toggle').click(function (){
+    $('.my-item').toggleClass('mobile-hide');
+  });
+  $('.ui.dropdown').dropdown({
+    on:'hover'
+  });
+
+</script>
+</body>
+</html>
